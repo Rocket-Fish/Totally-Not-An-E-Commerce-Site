@@ -14,14 +14,7 @@ function App() {
   return (
     <div>
       <Route exact={true} path='/' component={HomePage} />
-      < Route exact = {
-        true
-      }
-      path = '/hats'
-      component = {
-        HatsPage
-      }
-      />
+      <Route exact={true} path='/hats' component={HatsPage} />
     </div>
   );
 }

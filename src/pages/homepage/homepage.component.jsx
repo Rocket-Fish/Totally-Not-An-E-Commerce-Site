@@ -3,7 +3,7 @@ import Directory from '../../components/directory/directory.compontent'
 
 import './homepage.styles.sass'
 
-const Homepage = () => (
+const Homepage = ({history}) => (
 	<div className = 'homepage'> 
 		<Directory />
 	</div>
