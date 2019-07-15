@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './collection-preview.sass'
+import './collection-preview.styles.sass'
 
 import CollectionItem from '../collection-item/collection-item.component'
 
