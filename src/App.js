@@ -3,18 +3,13 @@ import {Route} from 'react-router-dom'
 
 import './App.sass';
 import HomePage from './pages/homepage/homepage.component'
-
-const HatsPage = () => (
-  <div> 
-    <h1> HATS PAGE </h1>
-  </div>
-)
+import ShopPage from './pages/shop/shop.component'
 
 function App() {
   return (
     <div>
       <Route exact={true} path='/' component={HomePage} />
-      <Route exact={true} path='/hats' component={HatsPage} />
+      <Route exact={true} path='/shop' component={ShopPage} />
     </div>
   );
 }
