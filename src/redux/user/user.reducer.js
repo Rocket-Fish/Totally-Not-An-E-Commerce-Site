@@ -3,7 +3,7 @@ const INITIAL_STATE = {
 }
 
 /*
-action is literally an object in the following format
+action is literally an object in the following format as specified in user.actions.js
 {
 	type: 
 	payload: 
