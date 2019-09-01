@@ -5,7 +5,11 @@ import { persistStore } from 'redux-persist'
 import rootReducer from './root-reducer'
 
 // list of middlewares
-const middlewares = [logger]
+const middlewares = []
+
+if(process.env.NODE_ENV === 'develpment') {
+	middlewares.push(logger)
+}
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares))
 
