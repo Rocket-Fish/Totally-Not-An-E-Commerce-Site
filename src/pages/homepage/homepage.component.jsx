@@ -1,12 +1,12 @@
 import React from 'react'
 import Directory from '../../components/directory/directory.compontent'
 
-import './homepage.styles.sass'
+import {HomePageContainer} from './homepage.styles'
 
 const Homepage = ({history}) => (
-	<div className = 'homepage'> 
+	<HomePageContainer> 
 		<Directory />
-	</div>
+	</HomePageContainer>
 )
 
 export default Homepage
