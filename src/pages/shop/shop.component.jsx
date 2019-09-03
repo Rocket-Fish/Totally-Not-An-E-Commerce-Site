@@ -21,14 +21,31 @@ class ShopPage extends React.Component {
 	unsubsciribeFromSnapshot = null
 
 	componentDidMount() {
+
+		/* fetching 
+		fetch('https://firestore.googleapis.com/v1/projects/not-an-ecommerce-site-db/databases/(default)/documents/collections')
+		.then(response => response.json())
+		.then(collections => console.log(collections))
+		*/
+
+		// firebase declarations
 		const {updateCollections} = this.props
 		const collectionRef = firestore.collection('collections')
+
+		// firebase using promeses
+		collectionRef.get().then(snapshot => {
+			const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
+			updateCollections(collectionsMap)
+			this.setState({ loading: false })
+		})
 		
+		/* firebase subscription snapshot
 		collectionRef.onSnapshot(async snapshot => {
 			const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
 			updateCollections(collectionsMap)
 			this.setState({loading: false})
-		})
+		}) 
+		*/
 	}
 
 	render () {
