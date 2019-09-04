@@ -35,5 +35,11 @@ export const fetchCollectionsStartAsync = () => {
 		}) 
 		*/
 
+		/* fetching 
+		fetch('https://firestore.googleapis.com/v1/projects/not-an-ecommerce-site-db/databases/(default)/documents/collections')
+		.then(response => response.json())
+		.then(collections => console.log(collections))
+		*/
+
 	}
 }
