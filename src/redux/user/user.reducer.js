@@ -19,11 +19,19 @@ const userReducer = (state = INITIAL_STATE, action) =>  {
 				currentUser: action.payload, 
 				error: null
 			} 
+		case UserActionTypes.SIGN_OUT_SUCESS:
+			return {
+				...state,
+				currentUser: null,
+				error: null
+			}
 		case UserActionTypes.SIGN_IN_FAILURE:
+		case UserActionTypes.SIGN_OUT_FAILURE:
 			return {
 				...state, 
 				error: action.payload
 			}
+
 		// note that every single action gets passed through every reducer
 		// so if no action type is found in this reducer, just return nothing
 		default: 
