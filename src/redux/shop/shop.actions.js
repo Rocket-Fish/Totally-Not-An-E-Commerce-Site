@@ -1,6 +1,4 @@
 import ShopActionTypes from './shop.types'
-import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils'
-
 
 export const fetchCollectionsStart = () => ({
 	type: ShopActionTypes.FETCH_COLLECTIONS_START, 
@@ -18,28 +16,5 @@ export const fetchCollectionsFailure = errorMessage => ({
 
 export const fetchCollectionsStartAsync = () => {
 	return dispatch => {
-		const collectionRef = firestore.collection('collections')
-		dispatch(fetchCollectionsStart())
-
-		// firebase using promeses
-		collectionRef.get().then(snapshot => {
-			const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
-			dispatch(fetchCollectionsSuccess(collectionsMap))
-		}).catch(error => dispatch(fetchCollectionsFailure(error)))
-
-		/* firebase subscription snapshot
-		collectionRef.onSnapshot(async snapshot => {
-			const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
-			updateCollections(collectionsMap)
-			this.setState({loading: false})
-		}) 
-		*/
-
-		/* fetching 
-		fetch('https://firestore.googleapis.com/v1/projects/not-an-ecommerce-site-db/databases/(default)/documents/collections')
-		.then(response => response.json())
-		.then(collections => console.log(collections))
-		*/
-
 	}
 }
