@@ -11,6 +11,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import CheckoutPage from './pages/checkout/checkout.component'
 
 import { selectCurrentUser } from './redux/user/user.selectors'
+import {checkUserSession} from './redux/user/user.actions'
 
 import Header from './components/header/header.component'
 
@@ -25,27 +26,8 @@ class App extends React.Component {
   unsubscribeFromAuth = null
 
   componentDidMount() {
-    /* pre saga code
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      // if userAuth is not null (i.e. they are signed in)
-      if (userAuth) {
-
-        const userRef = await createUserProfileDocument(userAuth)
-
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id, 
-            ...snapShot.data()
-          })
-        })
-      }
-      else {
-        setCurrentUser(userAuth)
-        addCollectionAndDocuments('collections', collectionsArray.map(({title, items})=>({title, items})))
-      }
-    })
-    */
+    const {checkUserSession} = this.props
+    checkUserSession()
   }
 
   componentWillUnmount() {
@@ -73,4 +55,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser, 
 })
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
