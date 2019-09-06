@@ -4,7 +4,8 @@ import {createStructuredSelector} from 'reselect'
 
 import {connect} from 'react-redux'
 
-import './App.sass'
+import {GlobalStyles} from './global.styles'
+
 import HomePage from './pages/homepage/homepage.component'
 import ShopPage from './pages/shop/shop.component'
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
@@ -23,6 +24,7 @@ const App = ({checkUserSession, currentUser}) => {
 
   return (
     <div>
+      <GlobalStyles />
       <Header/>
       <Switch>
         <Route exact={true} path='/' component={HomePage} />
