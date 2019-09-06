@@ -14,6 +14,7 @@ action is literally an object in the following format as specified in user.actio
 const userReducer = (state = INITIAL_STATE, action) =>  {
 	switch (action.type) {
 		case UserActionTypes.SIGN_IN_SUCCESS:
+		case UserActionTypes.SIGN_UP_SUCCESS:
 			return {
 				...state, 
 				currentUser: action.payload, 
@@ -25,6 +26,7 @@ const userReducer = (state = INITIAL_STATE, action) =>  {
 				currentUser: null,
 				error: null
 			}
+		case UserActionTypes.SIGN_UP_FAILURE: 
 		case UserActionTypes.SIGN_IN_FAILURE:
 		case UserActionTypes.SIGN_OUT_FAILURE:
 			return {
