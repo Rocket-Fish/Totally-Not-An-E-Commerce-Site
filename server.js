@@ -7,6 +7,8 @@ const path = require('path')
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+
 const app = express()
 const port = process.env.PORT || 5000
 
@@ -26,4 +28,20 @@ if(process.env.NODE_ENV === 'production') {
 app.listen(port, error => {
 	if(error) throw error;
 	console.log('server running on port ' + port)
+})
+
+app.post('/payment', (request, response) => {
+	const body = {
+		source: request.body.token.id, 
+		amount: request.body.amount, 
+		currency: 'usd'
+	};
+
+	stripe.charges.create(body, (stripeError, stripeResponse) => {
+		if(stripeError) {
+			response.status(500).send({error: stripeError}) //failure
+		} else {
+			response.status(200).send({success: stripeResponse}) // success
+		}
+	})
 })
